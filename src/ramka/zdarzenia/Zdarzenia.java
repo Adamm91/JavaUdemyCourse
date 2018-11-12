@@ -2,13 +2,14 @@ package ramka.zdarzenia;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 class Zdarzenia extends JFrame {
 
     // tworze panel oraz button
     JPanel panel = new JPanel();
-    JButton redButton = new JButton("czerwony");
-    JButton greenButton = new JButton("zielony");
+    JButton redButton;
+    JButton greenButton;
 
     // tworze konstruktor ramki
     public Zdarzenia() {
@@ -20,47 +21,41 @@ class Zdarzenia extends JFrame {
         initComponents();
     }
 
-    public static void main(String[] args) {
-        Zdarzenia zdarzenia = new Zdarzenia();
-
-    }
-
     // dodaje komponenty w oddzielnej metodzie
+
     private void initComponents() {
         this.getContentPane().add(panel); // dodaje panel do szkla
-//        panel.add(redButton); // dodaje button do panelu
-//        panel.add(greenButton); // dodaje button do panelu
 
-//        redButton.addActionListener(new sluchachKolorow(Color.RED)); // dodaje sluchacza buttona i w konstruktorze podaje kolor
-//        greenButton.addActionListener(new sluchachKolorow(Color.GREEN)); // dodaje sluchacza buttona i w konstruktorze podaje kolor
-        createChangingBgColorButton("zolty", Color.YELLOW);
-        createChangingBgColorButton("czerwony", Color.RED);
-        createChangingBgColorButton("zielony", Color.GREEN);
+        redButton = new JButton("Czerwony"); // dodaje przyciski z nazwami
+        greenButton = new JButton("Zielony");
 
+        redButton.addActionListener(new Sluchacz_kolorow(Color.RED)); // przyciskom dodaje sluchacza i kolor
+        greenButton.addActionListener(new Sluchacz_kolorow(Color.GREEN));
+
+
+        panel.add(redButton); // dodaje przycisk do panelu
+        panel.add(greenButton);
+
+        createButton("czarny", Color.black); // moge alternatywna metoda stworzyc przyciski
     }
-/*
 
+    public class Sluchacz_kolorow implements ActionListener { // tworze sluchacza kolorow ktory rozszerza ActionListenera
 
-//     tworze sluchacza
-    private class sluchachKolorow implements ActionListener {
-        Color kolor; // tworze pole koloru
+        Color kolor; // pole koloru
 
-         tworze konstruktor w ktorym podajemy kolor
-        public sluchachKolorow(Color k) {
-            this.kolor = k;// przypisuje kolorowi kolor z konstruktora
+        public Sluchacz_kolorow(Color color) {
+            this.kolor = color; // kontruktor w ktorym musze podac kolor
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            panel.setBackground(kolor); // przypisuje dla tla panelu kolor z konstruktora, ktory idzie z buttona
+            panel.setBackground(kolor); // panel zmienia tlo na podany przy wywolaniu metody kolor
         }
-
     }
-     */
 
-    public void createChangingBgColorButton(String name, final Color k) {
-        JButton jButton = new JButton(name);
-        panel.add(jButton);
-        jButton.addActionListener(e -> panel.setBackground(k));
+    public void createButton (String nazwa, Color color) { // tworze metode do tworzenia przyciskow
+        JButton jButton = new JButton(nazwa); // tworzy przycisk wraz z nazwa
+        jButton.addActionListener(new Sluchacz_kolorow(color)); // dodaje sluchacza oraz kolor
+        panel.add(jButton); // dodaje przycisk do panelu
     }
 }

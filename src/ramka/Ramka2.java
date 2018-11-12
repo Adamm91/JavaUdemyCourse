@@ -9,7 +9,7 @@ public class Ramka2 extends JFrame {
         this.setBounds(300, 200, 1000, 1000);
         this.setDefaultCloseOperation(3);
         this.setTitle("gowno");
-//        this.pack(); sprawia ze ramka sie "pakuje" do odpowiednich rozmiarow - nie dziala tutaj (na linuxie)
+//        this.pack(); sprawia ze ramka sie "pakuje" do odpowiednich rozmiarow
     }
 
     public static void main(String[] args) {

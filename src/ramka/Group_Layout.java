@@ -23,12 +23,8 @@ public class Group_Layout extends JFrame {
         this.setVisible(true);
     }
 
+
     // metoda init wywolywana podczas konstruktora domyslnego
-
-    public static void main(String[] args) {
-        Group_Layout group_layout = new Group_Layout();
-    }
-
     public void initComponents() {
         // tworze layout grupowy
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -67,5 +63,9 @@ public class Group_Layout extends JFrame {
 
         layout.setAutoCreateContainerGaps(true); // ustawiam odstepy buttonow od krawedzi ramki
         layout.setAutoCreateGaps(true); // ustawiam odstepy miedzy buttonami
+    }
+
+    public static void main(String[] args) {
+        Group_Layout group_layout = new Group_Layout();
     }
 }
